@@ -175,8 +175,8 @@ atom :: { Exp L.Range }
 {
 parseError :: L.RangedToken -> L.Alex a
 parseError _ = do
-  (L.AlexPn _ line column, _, _, _) <- L.alexGetInput
-  L.alexError $ "Parse error at line " <> show line <> ", column " <> show column
+  (L.AlexPn _ line column, _, str, _) <- L.alexGetInput
+  L.alexError $ "Parse error at line " <> show line <> ", column " <> show column <> " : " <> show str
 
 lexer :: (L.RangedToken -> L.Alex a) -> L.Alex a
 lexer = (=<< L.alexMonadScan)

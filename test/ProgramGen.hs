@@ -5,6 +5,7 @@
 module ProgramGen where
 
 import Data.ByteString.Lazy.Char8 (pack)
+import PrettyPrint (PrettyPrint (pPrint))
 import Program
   ( Argument (..),
     Dec (..),
@@ -14,8 +15,12 @@ import Program
     Program (..),
     Type (..),
   )
-import Test.QuickCheck (Arbitrary (arbitrary), Gen, choose, elements, listOf, sized, suchThat, generate)
-import PrettyPrint ( PrettyPrint(pPrint) )
+import Test.QuickCheck (Arbitrary (arbitrary), Gen, choose, elements, generate, listOf, sized)
+
+notIdentifier = ["let", "in", "true", "false", "main", "if", "then", "else"]
+
+modifyIdentifilerGen :: String -> String
+modifyIdentifilerGen str = if str `elem` notIdentifier then str else '_' : str
 
 choose' :: (a, a) -> Gen a
 choose' (x, y) = do
@@ -27,16 +32,16 @@ identifierGen = do
   let alphas = ['a' .. 'z'] <> ['A' .. 'Z']
   let digits = ['0' .. '9']
   let puncs = ['_', '\'', '-', '<', '>', '!']
-  firstChar <- elements $ ['-'] <> alphas
+  firstChar <- elements $ ['_'] <> alphas
   rest <- listOf $ elements $ alphas <> digits <> puncs
-  let identifier = firstChar : rest
-  return identifier `suchThat` (\x -> x /= "_")
+  let identifier = modifyIdentifilerGen $ firstChar : rest
+  return identifier
 
 stringGen :: Gen String
 stringGen = do
   let alphas = ['a' .. 'z'] <> ['A' .. 'Z']
   let digits = ['0' .. '9']
-  listOf (elements (alphas <> digits))
+  listOf $ elements (alphas <> digits)
 
 instance Arbitrary (Name ()) where
   arbitrary :: Gen (Name ())
@@ -67,8 +72,8 @@ instance Arbitrary (Type ()) where
 arbitrarySizedType :: Int -> Gen (Type ())
 arbitrarySizedType m = do
   name <- arbitrary :: Gen (Name ())
-  ty1 <- arbitrarySizedType (m `div` 2)
-  ty2 <- arbitrarySizedType (m `div` 2)
+  ty1 <- arbitrarySizedType (m `div` 32)
+  ty2 <- arbitrarySizedType (m `div` 32)
   elements [TVar () name, TUnit (), TBool (), TString (), TInt (), TList () ty1, TArrow () ty1 ty2]
 
 instance Arbitrary (Argument ()) where
@@ -102,7 +107,9 @@ instance Arbitrary (Dec ()) where
     name <- arbitrary :: Gen (Name ())
     args <- arbitrary :: Gen [Argument ()]
     ty <- arbitrary :: Gen (Maybe (Type ()))
-    return $ Dec () name args ty (EUnit ())
+    exp <- arbitrary :: Gen (Exp ())
+    return $ Dec () name args ty exp
+    -- return $ Dec () name args ty (EUnit ())
 
 instance Arbitrary (Exp ()) where
   arbitrary :: Gen (Exp ())
@@ -117,9 +124,9 @@ arbitrarySizedExp m = do
   name <- arbitrary :: Gen (Name ())
   dec <- arbitrary :: Gen (Dec ())
   exps <- arbitrary :: Gen [Exp ()]
-  exp1 <- arbitrarySizedExp (m `div` 2)
-  exp2 <- arbitrarySizedExp (m `div` 2)
-  exp3 <- arbitrarySizedExp (m `div` 2)
+  exp1 <- arbitrarySizedExp (m `div` 32)
+  exp2 <- arbitrarySizedExp (m `div` 32)
+  exp3 <- arbitrarySizedExp (m `div` 32)
   elements
     [ EInt () i,
       EVar () name,

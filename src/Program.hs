@@ -81,6 +81,7 @@ instance Functor Exp where
     fmap f (EList a exps) = EList (f a) (fmap (fmap f) exps)
     fmap f (EApp a pro arg) = EApp (f a) (fmap f pro) (fmap f arg)
     fmap f (EIfThenElse a cond conseq alt) = EIfThenElse (f a) (fmap f cond) (fmap f conseq) (fmap f alt)
+    fmap f (ENeg _ (EInt a' i)) = EInt (f a') (-i) -- -1 => Neg (Int 1) or Int -1 ?
     fmap f (ENeg a exp) = ENeg (f a) (fmap f exp)
     fmap f (EBinOp a expL op expR) = EBinOp (f a) (fmap f expL) (fmap f op) (fmap f expR)
     fmap f (EOp a op) = EOp (f a) (fmap f op)
@@ -109,7 +110,7 @@ instance PrettyPrint (Exp a) where
   pPrint (EVar _ name) = pPrint name
   pPrint (EUnit _) = "()"
   pPrint (EBool _ b) = map toLower $ show b
-  pPrint (EString _ bs) = unpack bs
+  pPrint (EString _ bs) = "\"" <> unpack bs <> "\""
   pPrint (ETuple _ exps) = "#(" <> intercalate ", " (pPrint <$> exps) <> ")"
   pPrint (EList _ exps) = "[" <> intercalate ", " (pPrint <$> exps) <> "]"
   pPrint (EApp _ proc arg) = pPrint proc <> " " <> pPrint arg
