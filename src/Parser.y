@@ -102,7 +102,8 @@ type :: { Type L.Range }
   | '(' ')'        { TUnit (L.rtRange $1 <-> L.rtRange $2) }
   | '#(' sepBy(type, ',') ')'   { TTuple (L.rtRange $1 <-> L.rtRange $3) $2 }
   | '[' type ']'   { TList (L.rtRange $1 <-> L.rtRange $3) $2 }
-  | type '->' type { TArrow (info $1 <-> info $3) $1 $3 }
+  |  type '->' type { TArrow (info $1 <-> info $3) $1 $3 }
+  | '(' type '->' type ')' { TArrow (L.rtRange $1 <-> L.rtRange $5) $2 $4 }
 
 
 typeAnnotation :: { Type L.Range }

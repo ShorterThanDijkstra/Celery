@@ -1,4 +1,14 @@
 module Main (main) where
+import Data.ByteString.Lazy.Char8(pack)
+import Program
+import Parser
+import PrettyPrint (PrettyPrint(pPrint))
 
+mkName _ str = Name () $ pack str
+
+p0 = Program () [Dec () (mkName () "NO4") [Argument () (mkName () "oo'swafW1") (Just (TVar () (mkName () "DpJw"))),Argument () (mkName () "jilL") (Just (TVar () (mkName () "Shrj!")))] (Just (TUnit ())) (EUnit ()),Dec () (mkName () "oQzv") [] Nothing (EUnit ()),Dec () (mkName () "VNzmbajZL") [Argument () (mkName () "P-pe006") Nothing,Argument () (mkName () "WECcuI") (Just (TInt ())),Argument () (mkName () "GXk-y37") (Just (TInt ())),Argument () (mkName () "-Kz'") (Just (TInt ())),Argument () (mkName () "jnM_aCDri") Nothing,Argument () (mkName () "UlM1JXrH") (Just (TArrow () (TBool ()) (TList () (TArrow () (TInt ()) (TVar () (mkName () "De9ZYCke7")))))),Argument () (mkName () "Fw'XVc3") Nothing,Argument () (mkName () "nWT<Ls>w") (Just (TVar () (mkName () "x")))] (Just (TVar () (mkName () "l!ZUf"))) (EUnit ()),Dec () (mkName () "gvcl'") [] (Just (TInt ())) (EUnit ()),Dec () (mkName () "-41Gg>KD") [Argument () (mkName () "yEe") Nothing,Argument () (mkName () "YclSGI") (Just (TList () (TString ()))),Argument () (mkName () "ff") (Just (TArrow () (TBool ()) (TVar () (mkName () "CE_PH")))),Argument () (mkName () "NQ40a") Nothing,Argument () (mkName () "Jr4at") Nothing,Argument () (mkName () "-9UYks>") (Just (TList () (TInt ())))] (Just (TBool ())) (EUnit ()),Dec () (mkName () "B") [Argument () (mkName () "ocj") (Just (TArrow () (TList () (TArrow () (TInt ()) (TUnit ()))) (TBool ()))),Argument () (mkName () "Wt-k") (Just (TUnit ())),Argument () (mkName () "vEmQxo") Nothing,Argument () (mkName () "E0z<4jY") (Just (TList () (TString ()))),Argument () (mkName () "wbXy7") (Just (TArrow () (TVar () (mkName () "k<X")) (TArrow () (TArrow () (TUnit ()) (TUnit ())) (TArrow () (TList () (TInt ())) (TInt ()))))),Argument () (mkName () "rYNua9Gz") (Just (TInt ())),Argument () (mkName () "sSm--I") (Just (TList () (TBool ())))] Nothing (EUnit ()),Dec () (mkName () "e") [Argument () (mkName () "qJEACJ") (Just (TString ())),Argument () (mkName () "YZkpFU") (Just (TString ())),Argument () (mkName () "shzqx93Er") Nothing,Argument () (mkName () "LUU") (Just (TBool ())),Argument () (mkName () "KRa_Lw3cW") (Just (TArrow () (TInt ()) (TVar () (mkName () "CJ-L")))),Argument () (mkName () "vodO") (Just (TString ())),Argument () (mkName () "XxX>gcTQ") Nothing] (Just (TList () (TUnit ()))) (EUnit ())] (Dec () (mkName () "main") [] (Just (TUnit ())) (EUnit ()))
+
+p1 = let (Right p) = parseStr $ pPrint p0
+     in fmap (const ()) p
 main :: IO ()
 main = putStrLn ""

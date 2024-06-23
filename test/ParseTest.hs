@@ -1,3 +1,14 @@
+{-# LANGUAGE InstanceSigs #-}
+
 module ParseTest where
-prop_reverse :: [Int] -> Bool
-prop_reverse xs = reverse (reverse xs) == xs
+
+import Parser (parseStr)
+import PrettyPrint (PrettyPrint (pPrint))
+import Program
+
+prop_parse :: Program () -> Bool
+prop_parse p =
+  let (Right p') = parseStr $ pPrint p
+      p'' = fmap (\_ -> ()) p'
+  in p'' == p
+  
