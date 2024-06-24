@@ -46,7 +46,7 @@ tokens :-
 <0> "/"     { tok Divide }
 
 -- Comparison operators
-<0> "="     { tok Eq }
+<0> "=="     { tok Eq }
 <0> "<>"    { tok Neq }
 <0> "<"     { tok Lt }
 <0> "<="    { tok Le }
@@ -79,6 +79,8 @@ tokens :-
 <0> "true" { tok (Boolean True) }
 <0> "false" { tok (Boolean False) }
 
+-- Assign
+<0> "="    { tok Assign }
 -- Identifiers
 <0> @id     { tokId }
 
@@ -162,6 +164,8 @@ data Token
 
   -- EOF
   | EOF
+  -- Assign
+  | Assign
   deriving (Eq, Show)
 
 mkRange :: AlexInput -> Int64 -> Range

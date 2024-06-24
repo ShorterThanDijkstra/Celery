@@ -41,7 +41,8 @@ stringGen :: Gen String
 stringGen = do
   let alphas = ['a' .. 'z'] <> ['A' .. 'Z']
   let digits = ['0' .. '9']
-  listOf $ elements ("\"" <> alphas <> digits <> "\"")
+  str <- listOf $ elements ( alphas <> digits)
+  return $ "\"" <> str <> "\""
 
 instance Arbitrary (Name ()) where
   arbitrary :: Gen (Name ())

@@ -106,19 +106,19 @@ instance Eq (Exp a) where
 
 instance PrettyPrint (Exp a) where
   pPrint :: Exp a -> String
-  pPrint (EInt _ i) = show i
-  pPrint (EVar _ name) = pPrint name
+  pPrint (EInt _ i) = "(" <> show i <> ")"
+  pPrint (EVar _ name) =  pPrint name
   pPrint (EUnit _) = "()"
-  pPrint (EBool _ b) = map toLower $ show b
+  pPrint (EBool _ b) =  map toLower (show b) 
   pPrint (EString _ bs) = unpack bs 
-  pPrint (ETuple _ exps) = "#(" <> intercalate ", " (pPrint <$> exps) <> ")"
-  pPrint (EList _ exps) = "[" <> intercalate ", " (pPrint <$> exps) <> "]"
+  pPrint (ETuple _ exps) = "(" <> "#(" <> intercalate ", " (pPrint <$> exps) <> ")" <> ")"
+  pPrint (EList _ exps) =  "(" <> "[" <> intercalate ", " (pPrint <$> exps) <> "]"<> ")"
   pPrint (EApp _ proc arg) = "(" <> pPrint proc <> " " <> pPrint arg <> ")"
-  pPrint (EIfThenElse _ cond conseq alt) = "if " <> pPrint cond <> " then " <> pPrint conseq <> "else" <> pPrint alt
-  pPrint (ENeg _ exp) = "-" <> pPrint exp
+  pPrint (EIfThenElse _ cond conseq alt) = "(" <>  "if " <> pPrint cond <> " then " <> pPrint conseq <> " else " <> pPrint alt <> ")"
+  pPrint (ENeg _ exp) = "(" <> "-" <> pPrint exp <> ")"
   pPrint (EBinOp _ expL op expR) = "(" <> pPrint expL <> " " <> pPrint op <> " " <> pPrint expR <> ")"
   pPrint (EOp _ op) = "(" <> pPrint op <> ")"
-  pPrint (ELetIn _ dec exp) = pPrint dec <> " in " <> pPrint exp
+  pPrint (ELetIn _ dec exp) = "(" <>  pPrint dec <> " in " <> pPrint exp <> ")"
 
 
 -- Argument    -----------------------------------------------------------------------------------
@@ -259,7 +259,7 @@ instance PrettyPrint (Operator a) where
   pPrint (Times _) = "*"
   pPrint (Divide _) = "/"
   pPrint (Eq _) = "=="
-  pPrint (Neq _) = "=/="
+  pPrint (Neq _) = "<>"
   pPrint (Lt _) = "<"
   pPrint (Le _) = "<="
   pPrint (Gt _) = ">"

@@ -36,18 +36,18 @@ data HappyAbsSyn t14 t15 t16 t17 t18 t19 t20 t21 t22
 	| HappyAbsSyn22 t22
 
 happyExpList :: Happy_Data_Array.Array Prelude.Int Prelude.Int
-happyExpList = Happy_Data_Array.listArray (0,453) ([0,0,0,0,8192,0,0,0,0,0,0,0,0,0,0,0,0,0,8192,0,0,0,0,0,0,128,0,0,0,0,0,0,0,0,1,4096,0,4,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,4096,0,0,64,22528,56,0,0,0,0,0,0,1,2048,0,1803,0,4,34688,3,512,49152,450,0,0,0,0,0,0,0,0,0,0,0,35808,11264,0,0,0,128,0,0,1024,0,0,0,0,0,64,0,0,0,8190,0,32768,7,176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,48640,49160,2,0,1119,352,0,12160,45058,0,49152,65431,127,0,35808,11264,0,0,0,288,0,0,32768,0,0,0,0,0,0,8192,0,0,32768,0,0,0,512,0,64,22528,56,0,0,512,0,16,5632,14,0,0,0,0,4,34176,3,0,0,0,0,65024,31,0,0,0,1,0,0,256,0,49152,5119,0,0,0,8,0,8952,3840,0,0,0,2,0,0,256,0,0,32768,0,0,0,64,0,0,8192,0,0,0,16,0,0,2048,0,0,0,4,0,0,512,0,0,0,1,0,0,0,0,0,16384,0,0,1536,0,0,53248,1023,0,0,0,0,0,8952,2816,0,31744,32785,5,0,2238,704,0,24320,24580,1,32768,559,176,0,6080,22529,0,57344,139,44,0,17904,5632,0,63488,34,11,0,4476,1408,0,48640,49160,2,0,1119,352,0,12160,45058,0,0,0,0,0,49152,1023,0,0,65504,0,0,61440,63,0,0,120,0,0,15360,0,0,0,30,0,0,3840,0,0,32768,7,0,0,960,0,0,0,0,0,0,0,0,0,24576,0,0,0,48,0,0,1119,352,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,48640,49160,2,0,0,0,0,0,16384,8,0,0,1024,0,0,0,0,0,65504,1,0,63488,255,0,31744,32785,5,0,64512,63,0,0
+happyExpList = Happy_Data_Array.listArray (0,454) ([0,0,0,0,16384,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,16384,0,0,0,0,0,0,0,0,512,0,64,4096,0,0,0,0,0,0,0,0,16384,0,0,0,0,0,0,0,0,16384,0,64,22528,56,0,0,0,0,0,0,4,16384,0,14424,0,64,30720,56,16384,0,14424,0,0,0,0,0,0,0,0,0,0,0,49152,279,88,0,0,0,2,0,0,32,0,0,0,0,0,8,0,0,32768,2047,0,49152,3,88,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,49152,279,88,0,6080,22529,0,49152,279,88,0,38848,32767,0,49152,279,88,0,0,32768,4,0,0,1024,0,0,0,0,0,0,1024,0,0,8192,0,0,0,256,0,64,22528,56,0,0,1024,0,64,22528,56,0,0,0,0,64,22528,56,0,0,0,0,32768,2047,0,0,0,128,0,0,0,1,0,65408,39,0,0,8192,0,49152,279,120,0,0,8192,0,0,0,32,0,0,8192,0,0,0,32,0,0,8192,0,0,0,32,0,0,8192,0,0,0,32,0,0,8192,0,0,0,32,0,0,0,0,0,0,32,0,0,6,0,0,65440,7,0,0,0,0,49152,279,88,0,6080,22529,0,49152,279,88,0,6080,22529,0,49152,279,88,0,6080,22529,0,49152,279,88,0,6080,22529,0,49152,279,88,0,6080,22529,0,49152,279,88,0,6080,22529,0,49152,279,88,0,0,0,0,0,65408,7,0,32768,1023,0,0,65408,1,0,32768,7,0,0,1920,0,0,32768,7,0,0,1920,0,0,32768,7,0,0,1920,0,0,0,0,0,0,0,0,0,0,6,0,0,1536,0,0,6080,22529,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,49152,279,88,0,0,0,0,0,0,1056,0,0,0,4,0,0,0,0,32768,2047,0,0,65472,7,0,6080,22529,0,0,65408,7,0
 	])
 
 {-# NOINLINE happyExpListPerState #-}
 happyExpListPerState st =
     token_strs_expected
-  where token_strs = ["error","%dummy","%start_parseCelery","name","type","typeAnnotation","argument","dec","prog","exp","expapp","expif","atom","many__argument__","many__dec__","optional__typeAnnotation__","sepBy__exp__','__","sepBy__type__','__","manyRev__argument__","manyRev__dec__","sepByRev__exp__','__","sepByRev__type__','__","identifier","string","integer","boolean","let","in","if","then","else","'+'","'-'","'*'","'/'","'='","'<>'","'<'","'<='","'>'","'>='","'&'","'|'","'#('","'('","')'","'['","']'","','","':'","'->'","'Int'","'String'","'Bool'","%eof"]
-        bit_start = st Prelude.* 55
-        bit_end = (st Prelude.+ 1) Prelude.* 55
+  where token_strs = ["error","%dummy","%start_parseCelery","name","type","typeAnnotation","argument","dec","prog","exp","expapp","expif","atom","many__argument__","many__dec__","optional__typeAnnotation__","sepBy__exp__','__","sepBy__type__','__","manyRev__argument__","manyRev__dec__","sepByRev__exp__','__","sepByRev__type__','__","identifier","string","integer","boolean","let","in","if","then","else","'+'","'-'","'*'","'/'","'=='","'<>'","'<'","'<='","'>'","'>='","'&'","'|'","'#('","'('","')'","'['","']'","','","':'","'->'","'Int'","'String'","'Bool'","'='","%eof"]
+        bit_start = st Prelude.* 56
+        bit_end = (st Prelude.+ 1) Prelude.* 56
         read_bit = readArrayBit happyExpList
         bits = Prelude.map read_bit [bit_start..bit_end Prelude.- 1]
-        bits_indexed = Prelude.zip bits [0..54]
+        bits_indexed = Prelude.zip bits [0..55]
         token_strs_expected = Prelude.concatMap f bits_indexed
         f (Prelude.False, _) = []
         f (Prelude.True, nr) = [token_strs Prelude.!! nr]
@@ -62,7 +62,7 @@ action_1 _ = happyFail (happyExpListPerState 1)
 
 action_2 _ = happyReduce_1
 
-action_3 (55) = happyAccept
+action_3 (56) = happyAccept
 action_3 _ = happyFail (happyExpListPerState 3)
 
 action_4 _ = happyReduce_15
@@ -102,7 +102,7 @@ action_13 _ = happyFail (happyExpListPerState 13)
 
 action_14 _ = happyReduce_58
 
-action_15 (36) = happyShift action_25
+action_15 (55) = happyShift action_25
 action_15 _ = happyFail (happyExpListPerState 15)
 
 action_16 (23) = happyShift action_2
@@ -1591,7 +1591,7 @@ happyNewToken action sts stk
 	= lexer(\tk -> 
 	let cont i = action i i tk (HappyState action) sts stk in
 	case tk of {
-	L.RangedToken L.EOF _ -> action 55 55 tk (HappyState action) sts stk;
+	L.RangedToken L.EOF _ -> action 56 56 tk (HappyState action) sts stk;
 	L.RangedToken (L.Identifier _) _ -> cont 23;
 	L.RangedToken (L.String _) _ -> cont 24;
 	L.RangedToken (L.Integer _) _ -> cont 25;
@@ -1624,10 +1624,11 @@ happyNewToken action sts stk
 	L.RangedToken L.IntTypeToken _ -> cont 52;
 	L.RangedToken L.StringTypeToken _ -> cont 53;
 	L.RangedToken L.BoolTypeToken _ -> cont 54;
+	L.RangedToken L.Assign _ -> cont 55;
 	_ -> happyError' (tk, [])
 	})
 
-happyError_ explist 55 tk = happyError' (tk, explist)
+happyError_ explist 56 tk = happyError' (tk, explist)
 happyError_ explist _ tk = happyError' (tk, explist)
 
 happyThen :: () => L.Alex a -> (a -> L.Alex b) -> L.Alex b

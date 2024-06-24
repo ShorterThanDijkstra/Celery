@@ -37,7 +37,7 @@ import Program
   '*'        { L.RangedToken L.Times _ }
   '/'        { L.RangedToken L.Divide _ }
   -- Comparison operators
-  '='        { L.RangedToken L.Eq _ }
+  '=='        { L.RangedToken L.Eq _ }
   '<>'       { L.RangedToken L.Neq _ }
   '<'        { L.RangedToken L.Lt _ }
   '<='       { L.RangedToken L.Le _ }
@@ -60,12 +60,13 @@ import Program
   'Int'      { L.RangedToken L.IntTypeToken _}
   'String'   { L.RangedToken L.StringTypeToken _ }
   'Bool' { L.RangedToken L.BoolTypeToken _ }
-
+  -- Assign
+  '='        { L.RangedToken L.Assign _ }
 %right else in
 %right '->' 
 %left '|'
 %left '&'
-%nonassoc '=' '<>' '<' '>' '<=' '>='
+%nonassoc '==' '<>' '<' '>' '<=' '>='
 %left '+' '-'
 %left '*' '/'
 
@@ -129,7 +130,7 @@ exp :: { Exp L.Range }
   | exp '*'  exp             { EBinOp (info $1 <-> info $3) $1 (Times (L.rtRange $2)) $3 }
   | exp '/'  exp             { EBinOp (info $1 <-> info $3) $1 (Divide (L.rtRange $2)) $3 }
   -- Comparison operators
-  | exp '='  exp             { EBinOp (info $1 <-> info $3) $1 (Eq (L.rtRange $2)) $3 }
+  | exp '=='  exp             { EBinOp (info $1 <-> info $3) $1 (Eq (L.rtRange $2)) $3 }
   | exp '<>' exp             { EBinOp (info $1 <-> info $3) $1 (Neq (L.rtRange $2)) $3 }
   | exp '<'  exp             { EBinOp (info $1 <-> info $3) $1 (Lt (L.rtRange $2)) $3 }
   | exp '<=' exp             { EBinOp (info $1 <-> info $3) $1 (Le (L.rtRange $2)) $3 }
@@ -162,7 +163,7 @@ atom :: { Exp L.Range }
   | '(' '*' ')'              { EOp (L.rtRange $1 <-> L.rtRange $3) (Times (L.rtRange $2)) }
   | '(' '/' ')'              { EOp (L.rtRange $1 <-> L.rtRange $3) (Divide (L.rtRange $2)) }
   -- Comparison operators
-  | '(' '=' ')'              { EOp (L.rtRange $1 <-> L.rtRange $3) (Eq (L.rtRange $2)) }
+  | '(' '==' ')'              { EOp (L.rtRange $1 <-> L.rtRange $3) (Eq (L.rtRange $2)) }
   | '(' '<>' ')'             { EOp (L.rtRange $1 <-> L.rtRange $3) (Neq (L.rtRange $2)) }
   | '(' '<' ')'              { EOp (L.rtRange $1 <-> L.rtRange $3) (Lt (L.rtRange $2)) }
   | '(' '<=' ')'             { EOp (L.rtRange $1 <-> L.rtRange $3) (Le (L.rtRange $2)) }
