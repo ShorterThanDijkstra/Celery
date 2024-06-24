@@ -5,7 +5,8 @@ import Parser
 import PrettyPrint (PrettyPrint(pPrint))
 
 mkName _ str = Name () $ pack str
-p0 = Program () [Dec () (mkName () "_N") [] (Just (TList () (TUnit ()))) (EApp () (EBool () True) (EBinOp () (EString () (pack "p")) (Divide ()) (EApp () (EUnit ()) (EString () (pack "b")))))] (Dec () (mkName () "main") [] Nothing (EUnit ()))
+mkString _ str = EString () $ pack str
+p0 = Program () [Dec () (mkName () "_nmQ1") [] Nothing (EIfThenElse () (EVar () (mkName () "_Uk")) (EInt () 0) (ENeg () (ETuple () [mkString () "MT3",ENeg () (EString () "h\""),EString () "y"])))] (Dec () (mkName () "main") [] (Just (TUnit ())) (EUnit ()))
 p1 = let (Right p) = parseStr $ pPrint p0
      in fmap (const ()) p
 main :: IO ()

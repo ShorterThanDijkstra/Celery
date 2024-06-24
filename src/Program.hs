@@ -110,13 +110,13 @@ instance PrettyPrint (Exp a) where
   pPrint (EVar _ name) = pPrint name
   pPrint (EUnit _) = "()"
   pPrint (EBool _ b) = map toLower $ show b
-  pPrint (EString _ bs) = "\"" <> unpack bs <> "\""
+  pPrint (EString _ bs) = unpack bs 
   pPrint (ETuple _ exps) = "#(" <> intercalate ", " (pPrint <$> exps) <> ")"
   pPrint (EList _ exps) = "[" <> intercalate ", " (pPrint <$> exps) <> "]"
-  pPrint (EApp _ proc arg) = pPrint proc <> " " <> pPrint arg
+  pPrint (EApp _ proc arg) = "(" <> pPrint proc <> " " <> pPrint arg <> ")"
   pPrint (EIfThenElse _ cond conseq alt) = "if " <> pPrint cond <> " then " <> pPrint conseq <> "else" <> pPrint alt
   pPrint (ENeg _ exp) = "-" <> pPrint exp
-  pPrint (EBinOp _ expL op expR) = pPrint expL <> " " <> pPrint op <> " " <> pPrint expR
+  pPrint (EBinOp _ expL op expR) = "(" <> pPrint expL <> " " <> pPrint op <> " " <> pPrint expR <> ")"
   pPrint (EOp _ op) = "(" <> pPrint op <> ")"
   pPrint (ELetIn _ dec exp) = pPrint dec <> " in " <> pPrint exp
 
