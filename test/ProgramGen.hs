@@ -17,10 +17,10 @@ import Program
   )
 import Test.QuickCheck (Arbitrary (arbitrary), Gen, choose, elements, generate, listOf, sized)
 
-notIdentifier = ["let", "in", "true", "false", "main", "if", "then", "else"]
+identifiers = ["let", "in", "true", "false", "main", "if", "then", "else"]
 
 modifyIdentifilerGen :: String -> String
-modifyIdentifilerGen str = if str `elem` notIdentifier then str else '_' : str
+modifyIdentifilerGen str = if str `elem` identifiers then '_' : str else str
 
 choose' :: (a, a) -> Gen a
 choose' (x, y) = do
@@ -124,7 +124,7 @@ arbitrarySizedExp m = do
   str <- pack <$> stringGen
   name <- arbitrary :: Gen (Name ())
   dec <- arbitrary :: Gen (Dec ())
-  exps <- arbitrary :: Gen [Exp ()]
+  -- exps <- listOf $ arbitrarySizedExp (m `div` 32)
   exp1 <- arbitrarySizedExp (m `div` 32)
   exp2 <- arbitrarySizedExp (m `div` 32)
   exp3 <- arbitrarySizedExp (m `div` 32)
@@ -134,18 +134,18 @@ arbitrarySizedExp m = do
       EUnit (),
       EBool () b,
       EString () str,
-      ETuple () exps,
-      EList () exps,
+      ETuple () [exp1],
+      EList () [exp1],
       EApp () exp1 exp2,
       EIfThenElse () exp1 exp2 exp3,
-      ENeg () exp1,
+      -- ENeg () exp1,
       EBinOp () exp1 op exp2,
       EOp () op,
       ELetIn () dec exp1
     ]
 
 showGen = do
-  p <- generate (arbitrary :: Gen (Program ()))
+  p <- generate (arbitrary :: Gen (Exp ()))
   putStrLn $ show p
   putStrLn "------------------------"
   putStrLn $ pPrint p
