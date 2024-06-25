@@ -1,1 +1,1 @@
-a ML written in Haskell
+a ML-like language written in Haskell
